@@ -3,7 +3,6 @@ package com.adamhosman.kafkaplayground;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Properties;
 
 import static com.adamhosman.kafkaplayground.Constants.BOOTSTRAP_SERVER_IP;
-import static com.adamhosman.kafkaplayground.Constants.TOPIC_1;
+import static com.adamhosman.kafkaplayground.Constants.TOPIC_NAME;
 import static org.apache.kafka.clients.producer.ProducerConfig.*;
 
 public class Producer {
@@ -24,13 +23,13 @@ public class Producer {
         for (int i = 1; i < 20; i++) {
             producer.send(
                     new ProducerRecord<>(
-                            TOPIC_1,
-                            Integer.toString(i % 2), // Send odd vs. even to different partitions
-                            String.format("Sending message no. %s", i)
+                            TOPIC_NAME,
+//                            Integer.toString(i % 2), // Send odd vs. even to different partitions
+                            String.format("To all kinds of groups: no. %s", i)
                     ),
                     CALLBACK);
+            producer.flush();
         }
-        producer.flush();
         producer.close();
     }
 
@@ -49,9 +48,9 @@ public class Producer {
 
     private static Properties createProducerProperties() {
         Properties p = new Properties();
-        p.setProperty(BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVER_IP);
-        p.setProperty(KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        p.setProperty(VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        p.put(BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVER_IP);
+        p.put(KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        p.put(VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         return p;
     }
 

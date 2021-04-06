@@ -20,7 +20,7 @@ public class Consumer {
 
     public static void main(String[] args) {
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(createConsumerProperties());
-        consumer.subscribe(Arrays.asList(TOPIC_1));
+        consumer.subscribe(Arrays.asList(TOPIC_NAME));
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
             for (ConsumerRecord<String, String> record : records) {
@@ -37,11 +37,11 @@ public class Consumer {
 
     private static Properties createConsumerProperties() {
         Properties p = new Properties();
-        p.setProperty(BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVER_IP);
-        p.setProperty(KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        p.setProperty(VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        p.setProperty(GROUP_ID_CONFIG, GROUP_1);
-        p.setProperty(AUTO_OFFSET_RESET_CONFIG, "earliest");
+        p.put(BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVER_IP);
+        p.put(KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        p.put(VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        p.put(GROUP_ID_CONFIG, GROUP_NAME);
+        p.put(AUTO_OFFSET_RESET_CONFIG, "earliest");
         return p;
     }
 
