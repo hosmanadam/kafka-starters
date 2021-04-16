@@ -1,4 +1,4 @@
-package com.adamhosman.kafkaplayground;
+package com.adamhosman.kafka.starters.clients;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -11,7 +11,7 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 
-import static com.adamhosman.kafkaplayground.Constants.*;
+import static com.adamhosman.kafka.starters.clients.Constants.*;
 import static org.apache.kafka.clients.consumer.ConsumerConfig.*;
 
 public class Consumer {

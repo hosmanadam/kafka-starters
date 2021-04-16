@@ -1,4 +1,4 @@
-package com.adamhosman.kafkaplayground;
+package com.adamhosman.kafka.starters.clients;
 
 public class Constants {
 

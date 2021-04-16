@@ -1,4 +1,4 @@
-package com.adamhosman.kafkaplayground;
+package com.adamhosman.kafka.starters.clients;
 
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
-import static com.adamhosman.kafkaplayground.Constants.BOOTSTRAP_SERVER_IP;
-import static com.adamhosman.kafkaplayground.Constants.TOPIC_NAME;
+import static com.adamhosman.kafka.starters.clients.Constants.BOOTSTRAP_SERVER_IP;
+import static com.adamhosman.kafka.starters.clients.Constants.TOPIC_NAME;
 import static org.apache.kafka.clients.producer.ProducerConfig.*;
 
 public class Producer {
